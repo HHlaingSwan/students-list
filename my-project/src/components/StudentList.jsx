@@ -1,6 +1,6 @@
 import { StudentBox } from "./StudentBox";
 
-export const StudentList = ({ students }) => {
+export const StudentList = ({ students, setStudents }) => {
 	return (
 		<>
 			<h1 className='text-center text-3xl font-extrabold my-16 '>
@@ -15,6 +15,7 @@ export const StudentList = ({ students }) => {
 						iD={st.iD}
 						image={st.image}
 						email={st.email}
+						setStudents={setStudents}
 					/>
 				))}
 			</div>

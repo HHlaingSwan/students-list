@@ -1,22 +1,37 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 export const StudentForm = ({ setStudents }) => {
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [image, setImage] = useState("0");
+	// const [name, setName] = useState("");
+	// const [email, setEmail] = useState("");
+	// const [image, setImage] = useState("0");
+	const nameRef = useRef("");
+	const emailRef = useRef("");
+	const imageRef = useRef("");
 
 	const dataReset = () => {
-		setName("");
-		setEmail("");
-		setImage("");
+		// setName("");
+		// setEmail("");
+		// setImage("");
+		nameRef.current.value = "";
+		emailRef.current.value = "";
+		imageRef.current.value = "";
 	};
+
 	const getId = () => {
 		return Math.round(Math.random() * 1000);
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(name, email, image);
+		let name = nameRef.current.value;
+		let email = emailRef.current.value;
+		let image = imageRef.current.value;
+		console.log(
+			nameRef.current.value,
+			emailRef.current.value,
+			imageRef.current.value
+		);
+
 		if (!name || !email || !image) {
 			alert("please Fill The Data!!");
 		} else {
@@ -46,10 +61,11 @@ export const StudentForm = ({ setStudents }) => {
 							type='text'
 							name='name'
 							id='name'
-							value={name}
-							onChange={(e) => {
-								setName(e.target.value);
-							}}
+							ref={nameRef}
+							// value={name}
+							// onChange={(e) => {
+							// 	setName(e.target.value);
+							// }}
 						/>
 					</div>
 					<div className='w-full  flex items-center justify-evenly  my-2 py-4 '>
@@ -59,10 +75,11 @@ export const StudentForm = ({ setStudents }) => {
 							type='text'
 							name='email'
 							id='email'
-							value={email}
-							onChange={(e) => {
-								setEmail(e.target.value);
-							}}
+							ref={emailRef}
+							// value={email}
+							// onChange={(e) => {
+							// 	setEmail(e.target.value);
+							// }}
 						/>
 					</div>
 					<div className='w-full  flex items-center justify-evenly  my-2 py-4 '>
@@ -71,10 +88,12 @@ export const StudentForm = ({ setStudents }) => {
 							className='w-4/5 py-2 border  border-slate-700 rounded-lg'
 							name='image'
 							id='image'
-							value={image}
-							onChange={(e) => {
-								setImage(e.target.value);
-							}}>
+							ref={imageRef}
+							// value={image}
+							// onChange={(e) => {
+							// 	setImage(e.target.value);
+							// }}
+						>
 							<option value=''>Select Photo</option>
 							<option value='https://cdn.pixabay.com/photo/2019/06/22/18/30/woman-4292200_1280.jpg'>
 								Couple
